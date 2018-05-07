@@ -7,3 +7,14 @@
 /build
 /captures
 .externalNativeBuild
+
+# IntelliJ IDEA
+.idea
+gen
+
+# Gradle
+build
+local.properties
+/.gitignore
+/.idea/gradle.xml
+/.idea/
