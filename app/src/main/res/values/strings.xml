@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">JoYen备忘录</string>
+    <string name="main_memo">备忘录</string>
+    <string name="edit_save">保存</string>
+    <string name="main_editor">编辑</string>
+</resources>
