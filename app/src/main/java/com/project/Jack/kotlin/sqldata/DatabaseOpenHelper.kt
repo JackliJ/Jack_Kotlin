@@ -6,6 +6,7 @@ import com.project.Jack.kotlin.app.BaseAppliciton
 import org.jetbrains.anko.db.*
 
 /**
+ * 数据库配置文件
  * Created by vslimit on 17/1/23.
  */
 class DatabaseOpenHelper(ctx: Context = BaseAppliciton.instance) : ManagedSQLiteOpenHelper(ctx, DB_NAME, null, DB_VERSION) {

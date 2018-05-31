@@ -57,11 +57,11 @@
         android:layout_alignParentBottom="true">
         <ImageView
             android:id="@+id/main_img_home"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:background="@mipmap/main_button"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="10dp"
+            android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"/>
 
         <TextView
@@ -76,11 +76,11 @@
 
         <ImageView
             android:id="@+id/main_img_editor"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_marginRight="20dp"
+            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:layout_alignTop="@+id/textView"
             android:background="@mipmap/main_button_reghit" />
 
     </RelativeLayout>
