@@ -6,6 +6,23 @@ package com.project.Jack.kotlin.model
  * 文本标题
  */
 class Notepad{
+    override fun equals(other: Any?): Boolean {
+        return super.equals(other)
+    }
+
+
+
+    constructor(NTiTle: String, NName: String, NTime: String, NAddress: String, NContent: String) {
+        this.NTiTle = NTiTle
+        this.NName = NName
+        this.NTime = NTime
+        this.NAddress = NAddress
+        this.NContent = NContent
+    }
+
+    constructor()
+
+
 
     //文本标题
     var NTiTle : String = ""

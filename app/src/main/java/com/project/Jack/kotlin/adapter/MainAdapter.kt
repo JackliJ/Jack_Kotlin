@@ -15,12 +15,12 @@ import com.project.Jack.kotlin.model.Notepad
  * <br/>
  *
  */
-class MainAdapter constructor(context:Context,mdata:List<Notepad>) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
+class MainAdapter constructor(context:Context,mdata:MutableList<Notepad>) : RecyclerView.Adapter<MainAdapter.MyViewHolder>() {
 
     //上下文
     private var mContext:Context? = null
     //数据实体
-    private var mData:List<Notepad>? = null
+    private var mData:MutableList<Notepad>? = null
 
     init {
         //初始化
@@ -39,7 +39,7 @@ class MainAdapter constructor(context:Context,mdata:List<Notepad>) : RecyclerVie
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.mNote.text = mData?.get(position)?.NTiTle
+        holder.mTitle.text = mData?.get(position)?.NTiTle
         holder.mTime.text = mData?.get(position)?.NTime
         holder.mNote.text = mData?.get(position)?.NAddress
     }

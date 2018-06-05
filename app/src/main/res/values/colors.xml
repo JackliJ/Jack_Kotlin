@@ -9,4 +9,44 @@
     <color name="text_9">#999999</color>
     <color name="h_gry">#DBDBDB</color>
     <color name="li_background">#C7C7C7</color>
+
+    <!-- 01 文字 -->
+    <color name="T1">#D90500</color> <!--重点-->
+    <color name="T2">#03A1FA</color> <!--链接-->
+    <color name="T3">#FF6600</color>
+    <color name="T4">#FFA200</color>
+    <color name="T5">#DD2727</color>
+    <color name="T6">#FF0000</color>
+    <color name="T7">#000000</color>
+    <color name="T8">#333333</color>
+    <color name="T9">#666666</color>
+    <color name="T10">#999999</color>
+    <color name="T11">#CCCCCC</color>
+    <color name="T12">#FFFFFF</color>
+    <color name="T13">#2E5299</color>
+    <color name="T14">#4F4F4F</color>
+
+    <!-- 02 线条 -->
+    <color name="d1">#DFDFDF</color> <!--分割线通用色-->
+    <color name="d2">#D90500</color> <!--重点线、按钮描边1-->
+    <color name="d3">#DD2727</color> <!--按钮描边2-->
+    <color name="d4">#BABABA</color> <!--按钮描边3-->
+
+
+    <!-- 03 背景 -->
+    <color name="b1">#B90500</color> <!--顶部栏&按钮通用色-->
+    <color name="b2">#333333</color> <!--顶部栏-“首页”背景色-->
+    <color name="b3">#FEFEFE</color> <!--顶部栏-“银行卡”背景色-->
+    <color name="b4">#F7F7F7</color> <!--底部栏背景色-->
+    <color name="b5">#F4F4F4</color> <!--页面背景通用色1-->
+    <color name="b6">#FFFFFF</color> <!--页面背景2&输入框背景1-->
+    <color name="b7">#F9F9F9</color> <!--输入框背景色2-->
+    <color name="b8">#F2F7FA</color> <!--聊天框背景色-->
+    <color name="b9">#E1E1E1</color> <!--按钮不可点击背景色-->
+    <color name="b10">#03A1FA</color>
+    <color name="b11">#FFA200</color>
+    <color name="b12">#10000000</color> <!--透明度90%      颜色叠加半透明隔层-->
+    <color name="b13">#40000000</color> <!--透明度60%      跳出框全屏半透明隔层1-->
+    <color name="b14">#80000000</color> <!--透明度20%      跳出框全屏半透明隔层2-->
+    <color name="b15">#00000000</color> <!--透明度100%      颜色叠加半透明隔层-->
 </resources>

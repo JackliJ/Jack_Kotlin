@@ -1,6 +1,7 @@
 package com.project.Jack.kotlin.app
 
 import android.app.Application
+import com.project.Jack.kotlin.sqldata.DatabaseOpenHelper
 import kotlin.properties.Delegates
 
 /**

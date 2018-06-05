@@ -37,6 +37,13 @@ dependencies {
     compile 'org.jetbrains.anko:anko-sqlite:0.8.2'
     //富文本编辑器
     compile 'jp.wasabeef:richeditor-android:1.2.2'
+    // Android适配AutoLayout https://github.com/hongyangAndroid/AndroidAutoLayout
+    compile 'com.zhy:autolayout:1.4.5'
+    // Android事件注入 https://github.com/JakeWharton/butterknife
+    compile 'com.jakewharton:butterknife:8.6.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
+    // 仿iOS的PickerView控件，有时间选择和选项选择，并支持一二三级联动，支持自定义样式https://github.com/Bigkoo/Android-PickerView
+    compile 'com.contrarywind:Android-PickerView:3.2.6'
 }
 
 buildscript {

@@ -50,9 +50,65 @@
 
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:orientation="vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="50dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="标题："/>
+
+            <EditText
+                android:id="@+id/dialog_ed_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:hint="新建备忘录"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="时间："/>
+
+            <TextView
+                android:id="@+id/dialog_tv_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"/>
+        </LinearLayout>
+
+
+        <View
+            android:id="@+id/v_status_bar"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:background="@color/d1" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="40dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="110dp"
         android:orientation="vertical">
 
         <jp.wasabeef.richeditor.RichEditor

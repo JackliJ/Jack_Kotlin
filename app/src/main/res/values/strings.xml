@@ -3,4 +3,17 @@
     <string name="main_memo">备忘录</string>
     <string name="edit_save">保存</string>
     <string name="main_editor">编辑</string>
+    <string name="Memorandum_number">%1$s个备忘录</string>
+    <string name="widget_cancel">取消</string>
+    <string name="widget_ok">确定</string>
+    <string name="note_to_save">保存</string>
+    <string name="account_month">月</string>
+    <string name="account_day">日</string>
+    <string name="account_hour">时</string>
+    <string name="account_minute">分</string>
+    <string name="account_time_select">时间选择</string>
+    <string name="ok">确定</string>
+    <string name="account_today">今天&#160;</string>
+    <string name="q_d_c_y_r">您需要确定备忘录持有人和录入地址,你也可以直接点击保存跳过</string>
+    <string name="note_edit_title">您需要为您的备忘录创建一个标题</string>
 </resources>
