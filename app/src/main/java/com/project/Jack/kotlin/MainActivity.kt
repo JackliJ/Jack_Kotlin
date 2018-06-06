@@ -8,7 +8,8 @@ import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.Toast
 import com.project.Jack.kotlin.adapter.MainAdapter
 import com.project.Jack.kotlin.extension.database
 import com.project.Jack.kotlin.extension.parseList
@@ -16,6 +17,7 @@ import com.project.Jack.kotlin.model.Notepad
 import com.project.Jack.kotlin.sqldata.Company
 import com.project.Jack.kotlin.sqldata.NotePadTable
 import com.project.Jack.kotlin.ui.NoteEditorActivity
+import com.project.Jack.kotlin.util.MyOnItemClick
 import kotlinx.android.synthetic.main.activity_main.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.db.select
@@ -24,14 +26,15 @@ import java.util.HashMap
 /**
  * 首页
  */
-class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefreshListener,MyOnItemClick {
 
     //RecyclerView
     private var vRecyclerView: RecyclerView? = null
     //下拉刷新
     private var vSwipeRefresh: SwipeRefreshLayout? = null
     //新建备忘按钮
-    private var vImgEdit: ImageView? = null
+    private var vImgEdit: LinearLayout? = null
+    private var vImgShare : LinearLayout? = null
     //上下文
     private var mContext: Context? = null
     //LinearLayoutManager
@@ -55,7 +58,9 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
         //赋值组件
         vRecyclerView = main_rv
         vImgEdit = main_img_editor
+        vImgShare = main_img_home
         vImgEdit?.setOnClickListener(this)
+        vImgShare?.setOnClickListener(this)
         //设置数据加载方式
         linearLayoutManager = LinearLayoutManager(mContext)
         vRecyclerView?.layoutManager = linearLayoutManager
@@ -63,15 +68,8 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
         mistus = selectData()
         //填充数据
         adapter = MainAdapter(mContext!!, mistus!!)
+        adapter?.setOnItemClickListener(this)
         vRecyclerView?.adapter = adapter
-        //设置备忘录数据数量
-        if (mistus != null) {
-            var mFormat: String? = String.format(resources.getString(R.string.Memorandum_number), mistus?.size)
-            main_tv_mum.text = mFormat
-        } else {
-            var mFormat: String? = String.format(resources.getString(R.string.Memorandum_number), 0)
-            main_tv_mum.text = mFormat
-        }
         vSwipeRefresh = main_swipe
         //为SwipeRefreshLayout设置监听事件
         vSwipeRefresh?.setOnRefreshListener(this)
@@ -80,6 +78,31 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light)
+        //设置备忘录数据数量
+        if (mistus != null) {
+            var mFormat: String? = String.format(resources.getString(R.string.Memorandum_number), mistus?.size)
+            main_tv_mum.text = mFormat
+        } else {
+            var mFormat: String? = String.format(resources.getString(R.string.Memorandum_number), 0)
+            main_tv_mum.text = mFormat
+        }
+    }
+
+    //点击事件
+    override fun onItemClick(view: View, postion: Int) {
+        //携带数据跳转到编辑页面
+        val intents = Intent()
+        var b = Bundle()
+        b.putSerializable("notepad",mistus?.get(postion))
+        b.putInt("type",1)
+        intents.putExtra("bundle",b)
+        intents.setClass(this, NoteEditorActivity::class.java)
+        startActivity(intents)
+    }
+
+    //长按事件
+    override fun onLongClick(view: View, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     /**
@@ -122,6 +145,7 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
                 for (index in 0..(dsp!!.size - 1)) {
                     var sde: Notepad? = Notepad()
                     var i = index
+                    sde?.NID = dsp[i]._id.toString()
                     sde?.NTiTle = dsp[i].title
                     sde?.NName = dsp[i].name
                     sde?.NAddress = dsp[i].address
@@ -148,11 +172,20 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
 //                    ->Toast.makeText(mContext,notepad.NContent,Toast.LENGTH_SHORT).show()
 //                }
             }
+            R.id.main_img_home ->{
+                Toast.makeText(this,"功能暂时未开放",Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
+    /**
+     * 跳转到编辑页面
+     */
     fun startIntent() {
         val intents = Intent()
+        var b = Bundle()
+        b.putInt("type",0)
+        intents.putExtra("bundle",b)
         intents.setClass(this, NoteEditorActivity::class.java)
         startActivity(intents)
     }

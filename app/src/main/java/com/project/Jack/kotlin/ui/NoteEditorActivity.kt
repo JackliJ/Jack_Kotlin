@@ -16,8 +16,8 @@ import com.project.Jack.kotlin.sqldata.NotePadTable
 import com.project.Jack.kotlin.util.CustomDialog
 import jp.wasabeef.richeditor.RichEditor
 import kotlinx.android.synthetic.main.note_editor_layout.*
-import kotlinx.android.synthetic.main.pickerview_custom_time_options.*
 import org.jetbrains.anko.db.insert
+import org.jetbrains.anko.db.update
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -55,14 +55,43 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
     //时间控件
     var vTTime : TextView? = null
     var vEdTitle : EditText? = null
+    //保存传递数据
+    var mNote : Notepad? = null
+    //保存传递数据
+    var mType : Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.note_editor_layout)
+        //初始化传递数据
+        initIntent()
         //初始化组件
         initView()
         //初始化时间选择器
         initDate()
+        //加载已有数据
+        initdata()
+    }
+
+    fun initdata(){
+       if(mType == 1){
+           vEdit?.html = mNote?.NContent
+           vEdTitle?.setText(mNote?.NTiTle)
+           vTTime?.setText(mNote?.NTime)
+       }
+    }
+
+    //初始化传递数据
+    fun initIntent(){
+        var iins = intent
+        if(iins != null){
+            var b = iins.getBundleExtra("bundle")
+            mType = b.getInt("type")
+            if(mType == 1){
+                mNote = b.getSerializable("notepad") as Notepad?
+                mEdString = mNote?.NContent
+            }
+        }
     }
     //初始化时间数据集
     fun initDate(){
@@ -127,7 +156,7 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
             var date = mUpDate?.get(options1)
             var hour = mHours?.get(options2)?.substring(0,2)
             var minute = mMinutes?.get(options3)?.substring(0,2)
-            uploadTime = mYear.toString() + "-" + date +" " + hour + ":" + minute
+            uploadTime = mYear?.toString() + "-" + date +" " + hour + ":" + minute
         }
         ).setLayoutRes(R.layout.pickerview_custom_time_options,object : CustomListener{
             override fun customLayout(v: View) {
@@ -344,6 +373,15 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
         var vTvSave : TextView = v.findViewById(R.id.tv_save)
         var vEdauth : EditText = v.findViewById(R.id.dialog_ed_author)
         var vEdAddress : EditText = v.findViewById(R.id.dialog_ed_address)
+        var vTvNote : TextView = v.findViewById(R.id.dialog_tv_wenben)
+
+        if(mType == 1){
+            vTvNote.text = resources.getString(R.string.q_d_c_y_s)
+            vEdauth.setText(mNote?.NName)
+            vEdAddress.setText(mNote?.NAddress)
+        }else{
+            vTvNote.text = resources.getString(R.string.q_d_c_y_r)
+        }
 
         var vCustomViewDialog : CustomDialog = CustomDialog.Builder(this, CustomDialog.MODE_CUSTOM)
                 .setView(v).setBackground(R.drawable.bg_customdialog_language)
@@ -356,7 +394,7 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
             }
         })
 
-        //做数据库保存操作
+        //做数据库保存操作 如果是编辑的  则做修改操作
         vTvSave.setOnClickListener({v ->
             if(TextUtils.isEmpty(vEdauth.text.trim())){
                 vEdauth.setText(" ")
@@ -364,15 +402,39 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
             if(TextUtils.isEmpty(vEdAddress.text.trim())){
                 vEdAddress.setText(" ")
             }
-            var mNotepad = Notepad(vEdTitle?.text?.trim().toString(),vEdauth?.text?.trim().toString(),
-                    uploadTime!!,vEdAddress?.text?.trim().toString(), mEdString!!)
-            database.use {
-                insert(NotePadTable.TABLE_NAME,
-                        NotePadTable.TITLE to mNotepad.NTiTle,
-                        NotePadTable.NAME to mNotepad.NName,
-                        NotePadTable.TIME to mNotepad.NTime,
-                        NotePadTable.ADDRESS to mNotepad.NAddress,
-                        NotePadTable.CONTENT to mNotepad.NContent)
+            if(TextUtils.isEmpty(uploadTime)){
+                var df = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+                uploadTime = df.format(Date())
+            }
+            var s = vEdTitle?.text?.trim().toString()
+            var q = vEdauth?.text.toString()
+            var r = vEdAddress?.text.toString()
+            var d = uploadTime!!
+            var m = mEdString!!
+            var mNotepad = Notepad(s,q,d,r, m)
+            //做修改操作
+            if(mType == 1){
+                database.use {
+                    update(NotePadTable.TABLE_NAME,NotePadTable.TITLE to mNotepad.NTiTle)
+                            .where("_id = ${mNote?.NID}").exec()
+                    update(NotePadTable.TABLE_NAME,NotePadTable.NAME to mNotepad.NName)
+                            .where("_id = ${mNote?.NID}").exec()
+                    update(NotePadTable.TABLE_NAME,NotePadTable.TIME to mNotepad.NTime)
+                            .where("_id = ${mNote?.NID}").exec()
+                    update(NotePadTable.TABLE_NAME,NotePadTable.ADDRESS to mNotepad.NAddress)
+                            .where("_id = ${mNote?.NID}").exec()
+                    update(NotePadTable.TABLE_NAME,NotePadTable.CONTENT to mNotepad.NContent)
+                            .where("_id = ${mNote?.NID}").exec()
+                }
+            }else{
+                database.use {
+                    insert(NotePadTable.TABLE_NAME,
+                            NotePadTable.TITLE to mNotepad.NTiTle,
+                            NotePadTable.NAME to mNotepad.NName,
+                            NotePadTable.TIME to mNotepad.NTime,
+                            NotePadTable.ADDRESS to mNotepad.NAddress,
+                            NotePadTable.CONTENT to mNotepad.NContent)
+                }
             }
             finish()
         })

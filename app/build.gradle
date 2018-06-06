@@ -44,6 +44,8 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.6.0'
     // 仿iOS的PickerView控件，有时间选择和选项选择，并支持一二三级联动，支持自定义样式https://github.com/Bigkoo/Android-PickerView
     compile 'com.contrarywind:Android-PickerView:3.2.6'
+    //侧滑删除 https://github.com/mcxtzhang/SwipeDelMenuLayout
+    compile 'com.github.mcxtzhang:SwipeDelMenuLayout:V1.3.0'
 }
 
 buildscript {
@@ -55,5 +57,6 @@ buildscript {
     }
 }
 repositories {
+    maven { url "https://jitpack.io" }
     mavenCentral()
 }

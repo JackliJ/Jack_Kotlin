@@ -28,6 +28,7 @@
             android:layout_marginTop="15dp">
 
             <TextView
+                android:id="@+id/dialog_tv_wenben"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/q_d_c_y_r"/>

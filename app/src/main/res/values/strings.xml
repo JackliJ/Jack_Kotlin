@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JoYen备忘录</string>
+    <string name="app_name">备忘录</string>
     <string name="main_memo">备忘录</string>
     <string name="edit_save">保存</string>
     <string name="main_editor">编辑</string>
@@ -15,5 +15,8 @@
     <string name="ok">确定</string>
     <string name="account_today">今天&#160;</string>
     <string name="q_d_c_y_r">您需要确定备忘录持有人和录入地址,你也可以直接点击保存跳过</string>
+    <string name="q_d_c_y_s">您需要修改作者和创作地吗？你也可以直接跳过点击保存</string>
     <string name="note_edit_title">您需要为您的备忘录创建一个标题</string>
+    <string name="delete">删除</string>
+    <string name="delete_ok">确认删除</string>
 </resources>

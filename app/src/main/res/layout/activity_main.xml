@@ -23,33 +23,31 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
                     android:text="@string/main_memo"
                     android:textSize="30sp"
-                    android:layout_marginTop="10dp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginRight="10dp"
-                    android:text="@string/main_editor"
                     android:textColor="#dea628"
-                    android:textSize="14sp"
                     android:textStyle="bold" />
-            </RelativeLayout>
 
+                <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_alignParentRight="true"-->
+                <!--android:layout_centerInParent="true"-->
+                <!--android:layout_marginRight="10dp"-->
+                <!--android:text="@string/main_editor"-->
+                <!--android:textColor="#dea628"-->
+                <!--android:textSize="14sp"-->
+                <!--android:textStyle="bold" />-->
+            </RelativeLayout>
 
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/main_rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"/>
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp" />
 
         </LinearLayout>
     </android.support.v4.widget.SwipeRefreshLayout>
@@ -60,14 +58,22 @@
         android:layout_height="50dp"
         android:layout_alignParentBottom="true">
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/main_img_home"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:background="@mipmap/main_button" />
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/main_button" />
+        </LinearLayout>
+
 
         <TextView
             android:id="@+id/main_tv_mum"
@@ -79,14 +85,21 @@
             android:textColor="#666666"
             android:textSize="14sp" />
 
-        <ImageView
+        <LinearLayout
             android:id="@+id/main_img_editor"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentEnd="true"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/main_button_reghit" />
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/main_button_reghit" />
+        </LinearLayout>
 
     </RelativeLayout>
 

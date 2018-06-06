@@ -1,11 +1,13 @@
 package com.project.Jack.kotlin.model
 
+import java.io.Serializable
+
 /**
  * Create by www.lijin@foxmail.com on 2018/5/4 0004.
  * <br/>
  * 文本标题
  */
-class Notepad{
+class Notepad : Serializable {
     override fun equals(other: Any?): Boolean {
         return super.equals(other)
     }
@@ -23,6 +25,8 @@ class Notepad{
     constructor()
 
 
+    //ID 自增
+    var NID : String = ""
 
     //文本标题
     var NTiTle : String = ""
