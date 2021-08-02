@@ -4,8 +4,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.StyleRes;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.util.TypedValue;
@@ -20,6 +18,9 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.StyleRes;
 
 import com.project.Jack.kotlin.R;
 import com.zhy.autolayout.AutoLinearLayout;

@@ -162,13 +162,13 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
             override fun customLayout(v: View) {
                 var mfinish : TextView = v.findViewById(R.id.tv_finish)
                 var mCancel : TextView = v.findViewById(R.id.iv_cancel)
-                mfinish.setOnClickListener({v->
+                mfinish.setOnClickListener {
                     pvCustomOptions!!.returnData()
                     pvCustomOptions!!.dismiss()
-                })
-                mCancel.setOnClickListener({v->
+                }
+                mCancel.setOnClickListener {
                     pvCustomOptions!!.dismiss()
-                })
+                }
             }
         }).build() as OptionsPickerView<String>?
 
@@ -312,13 +312,13 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
     var mTextConlorChecked = false
     var mIsBackChecked = false
     //设置字体颜色
-    fun setEditTextColor() {
-        if (mTextConlorChecked) {
+    private fun setEditTextColor() {
+        mTextConlorChecked = if (mTextConlorChecked) {
             vEdit?.setTextColor(Color.BLACK)
-            mTextConlorChecked = true
+            true
         } else {
             vEdit?.setTextColor(Color.RED)
-            mTextConlorChecked = false
+            false
         }
     }
 
@@ -346,15 +346,10 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
         vEdit?.setInputEnabled(true)
 
         //实时获取文本
-        vEdit?.setOnTextChangeListener(object : RichEditor.OnTextChangeListener {
-
-            override fun onTextChange(text: String?) {
-                mEdString = text
-            }
-        })
+        vEdit?.setOnTextChangeListener { text -> mEdString = text }
 
         //保存点击事件
-        vTvSave?.setOnClickListener({ v ->
+        vTvSave?.setOnClickListener {
             //弹出保存dialog
             if(!TextUtils.isEmpty(vEdTitle?.text.toString())){
                 startDialog()
@@ -362,7 +357,7 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
                 Toast.makeText(this,resources.getString(R.string.note_edit_title),Toast.LENGTH_SHORT).show()
             }
 
-        })
+        }
     }
 
     fun startDialog(){
@@ -388,14 +383,14 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
                 .build()
 
         //关闭按钮
-        vImageClose.setOnClickListener({ v ->
+        vImageClose.setOnClickListener {
             if(vCustomViewDialog != null && vCustomViewDialog.isShowing()){
                 vCustomViewDialog.dismiss()
             }
-        })
+        }
 
         //做数据库保存操作 如果是编辑的  则做修改操作
-        vTvSave.setOnClickListener({v ->
+        vTvSave.setOnClickListener {
             if(TextUtils.isEmpty(vEdauth.text.trim())){
                 vEdauth.setText(" ")
             }
@@ -437,7 +432,7 @@ class NoteEditorActivity : Activity(), View.OnClickListener {
                 }
             }
             finish()
-        })
+        }
 
         //弹出选择框
         vCustomViewDialog?.show()

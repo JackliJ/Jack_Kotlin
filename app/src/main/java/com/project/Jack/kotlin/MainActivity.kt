@@ -4,12 +4,12 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.project.Jack.kotlin.adapter.MainAdapter
 import com.project.Jack.kotlin.extension.database
 import com.project.Jack.kotlin.extension.parseList
@@ -54,7 +54,7 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
     /**
      * 初始化组件
      */
-    fun initView() {
+    private fun initView() {
         //赋值组件
         vRecyclerView = main_rv
         vImgEdit = main_img_editor
@@ -137,7 +137,7 @@ class MainActivity : Activity(), View.OnClickListener, SwipeRefreshLayout.OnRefr
     /**
      * 查询数据库数据
      */
-    fun selectData(): MutableList<Notepad>? {
+    private fun selectData(): MutableList<Notepad>? {
         var ds: MutableList<Notepad>? = ArrayList()
         database.use {
             val dsp = select(NotePadTable.TABLE_NAME).parseList { Company(HashMap(it)) }
